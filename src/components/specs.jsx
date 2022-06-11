@@ -25,11 +25,3 @@ function Specs({id,collegeId,name,localId}) {
 export default Specs
 
 
-
-
-// {
-//     "id": 0,
-//     "collegeId": 0,
-//     "name": null,
-//     "localId": null
-//     }

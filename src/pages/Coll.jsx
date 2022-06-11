@@ -2,15 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/header'
 import { AnketContext, CollContext, HeaderContext } from '../App';
+import Footer from '../components/footer';
 function Coll() {
    
     const {headerValue, setHeaderValue} = React.useContext(HeaderContext);
     setHeaderValue(1)
     const {collValue, setCollValue} = React.useContext(CollContext);
     const {anketValue, setAnketValue} = React.useContext(AnketContext);
-    let [CollItem, SetCollItem]  = React.useState([{"id":1,"name":"Дкит","description":"говно говна","locatiom_H":456,"location_W":546,"email":"huyu@nahuy.huy","phone":"89898294181","webSite":"null","directorName":"null","photo":"null","hasSocialBehavior":true},{"id":2,"name":"не дкит","description":"не говно","locatiom_H":45,"location_W":87,"email":"q@q","phone":"792074512","webSite":"asjd","directorName":"Не горбунова","photo":"null","hasSocialBehavior":false}]);
+    let [CollItem, SetCollItem]  = React.useState([]);
     React.useEffect( ()=> {
-        fetch("College/GetAll").then((res)=>{
+        fetch("https://81e5-178-176-231-161.eu.ngrok.io/College/GetAll",{
+        
+
+        }).then((res)=>{
           return res.json();
          }).then( (json)=>{
             SetCollItem(json)
@@ -42,7 +46,8 @@ function Coll() {
 
 
   return (
-    <>
+    
+    <><Header/>
     
     <div className="container pt-6">
         <div className="row">
@@ -101,6 +106,7 @@ function Coll() {
     <div className="container pt-2">
 <Link to="/spec"><button onClick={qwe} type="submit" class="btn btn-primary btn-block mb-4 col-2">Далее</button> </Link>
 </div>
+<Footer/>
     </>
   )
 }

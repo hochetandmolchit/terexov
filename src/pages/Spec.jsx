@@ -1,5 +1,6 @@
 import React from 'react'
 import { AnketContext, CollContext, HeaderContext, SpecContext } from '../App';
+import Footer from '../components/footer';
 import Header from '../components/header'
 import Specs from '../components/specs'
 
@@ -12,6 +13,8 @@ function Spec() {
     setHeaderValue(2)
     
     let [specsItem, SetSpecsItem]  = React.useState([]);
+
+    console.log(specsItem)
     function qwe() {
        console.log(collValue[0])
        console.log(collValue[1])
@@ -20,13 +23,25 @@ function Spec() {
         console.log("Почта "+anketValue.email)
         console.log("Специальности "+specValue)
 
-      
+          
+            fetch('https://81e5-178-176-231-161.eu.ngrok.io/PdfCreator/DownloadFiles', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                 
+                },
+                body: JSON.stringify({
+                    "anket":[anketValue],
+                    "colleges": [collValue],
+                    "specialties": [specValue]
+                }),
+              });
     }
   
-   
+  
     React.useEffect( ()=> {
-        SetSpecsItem([{"id": 1, "collegeId": 1,"name": "Lorem.","localId": "null"},{"id": 2, "collegeId": 2,"name": "null","localId": "null"},{"id": 2, "collegeId": 2,"name": "qqwe","localId": "null"}])
-        fetch("GetByColleges/GetByCollegesId?ids="+"["+collValue+"]").then((res)=>{
+       
+        fetch("https://81e5-178-176-231-161.eu.ngrok.io/GetByColleges/GetByCollegesId?ids="+"["+collValue+"]").then((res)=>{
           return res.json();
          }).then( (json)=>{
             SetSpecsItem(json)
@@ -47,15 +62,15 @@ function Spec() {
         }
       };
 
-  return (
+  return (<>
+  
+ 
   
   <div class="pt-6">
- 
+  <Header/>
      
     
-     {
-     
-     specsItem.map((obj)=>(<>
+     {specsItem.map((obj)=>(
    
     <div className="col-12 pt-2 " key={obj.id}>
     
@@ -75,8 +90,8 @@ function Spec() {
                 checked={
                     specValue.lastIndexOf(Number(obj.id)) >= 0 ? true : false
                 }
-        //  onChange={formik.handleChange}
-        //  value={()=>formik.values.collId(id)}
+     
+       
         
          placeholder=''
              />
@@ -87,14 +102,16 @@ function Spec() {
                 Выбрать специальность </label >
         </div>
         </div>
-</div>  </div>
+</div>  
+
+</div>
         
    
     
  
     
     </div>
-    </> ))
+     ))
     
     }
 
@@ -102,7 +119,12 @@ function Spec() {
 <button onClick={qwe} type="submit" class="btn btn-primary btn-block mb-4 col-4 offset-4">Сформировать заявление</button> 
 </div>
     
-    </div>)
+    </div>
+    <div className="container fixed-bottom">
+    <Footer/>
+    </div>
+    </>)
+    
 }
 
 export default Spec

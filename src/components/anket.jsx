@@ -1,13 +1,13 @@
 
 import { useFormik } from 'formik';
-import { AnketContext, CollContext, HeaderContext } from '../App';
-import { Routes, Route, Link } from 'react-router-dom';
+import { AnketContext, HeaderContext } from '../App';
+import { Link } from 'react-router-dom';
 import React, {useCallback} from 'react';
-import {useNavigate} from 'react-router-dom';
+
 function Anket() {
     const {headerValue, setHeaderValue} = React.useContext(HeaderContext);
     setHeaderValue(0)
-    const {collValue, setCollValue} = React.useContext(CollContext);
+   
 
     const {anketValue, setAnketValue} = React.useContext(AnketContext);
 
@@ -38,20 +38,7 @@ function Anket() {
         onSubmit: values => {
             console.log("message")
             setAnketValue(values);
-            /*
-            fetch('https://a551-178-178-85-119.eu.ngrok.io/PdfCreator/DownloadFiles', {
-                method: 'POST',
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                  'Content-Type': 'application/json;charset=utf-8',
-                 
-                },
-                body: JSON.stringify({
-                    values,
-                    "colleges": [1],
-                    "specialties": [1]
-                }),
-              });*/
+        
         },
       });
 
@@ -121,7 +108,7 @@ function Anket() {
             className='form-check-label'
             for="isVisibleEducation"
             >
-                isVisibleEducation </label >
+                Очная форма образования </label >
         </div>
 
 
@@ -133,7 +120,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.сertificateSeries}
          class="form-control"
-         placeholder='Введите сertificateSeries'
+         placeholder='Введите серию сертификата'
        />
         </div>
 
@@ -145,7 +132,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.сertificateNumber}
          class="form-control"
-         placeholder='Введите сertificateNumber'
+         placeholder='Введите номер сертификата'
        />
         </div>
 
@@ -157,7 +144,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.сertificateScore}
          class="form-control"
-         placeholder='Введите сertificateScore'
+         placeholder='Введите количество баллов'
        />
         </div>
 
@@ -169,7 +156,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.foreignLanguage}
          class="form-control"
-         placeholder='Введите foreignLanguage'
+         placeholder='Введите иностранные языки'
        />
         </div>
 
@@ -187,7 +174,7 @@ function Anket() {
             className='form-check-label'
             for="needSocialBehavior"
             >
-                needSocialBehavior </label >
+                Нуждаюсь в общежитии </label >
         </div>
         
         <div class="form-check mb-3"> 
@@ -204,18 +191,18 @@ function Anket() {
             className='form-check-label'
             for="needHelp"
             >
-                needHelp </label >
+                Нужна дополнительная помощь </label >
         </div>
 
-        <div class="input-group mb-3">
-       <input
+        <div class="textarea-group mb-3">
+       <textarea
          id="moreInfo"
          name="moreInfo"
          type="moreInfo"
          onChange={formik.handleChange}
          value={formik.values.moreInfo}
          class="form-control"
-         placeholder='Введите moreInfo'
+         placeholder='О себе'
        />
         </div>
 
@@ -227,7 +214,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.schoolName}
          class="form-control"
-         placeholder='Введите schoolName'
+         placeholder='Введите название школы'
        />
         </div>
 
@@ -239,7 +226,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.schoolEndYear}
          class="form-control"
-         placeholder='Введите schoolEndYear'
+         placeholder='Введите год окончания школы'
        />
         </div>
         <div class="input-group mb-3">
@@ -250,7 +237,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.oldEducation}
          class="form-control"
-         placeholder='Введите oldEducation'
+         placeholder='Введите предыдущее образование'
        />
         </div>
         <div class="form-check mb-3"> 
@@ -267,7 +254,7 @@ function Anket() {
             className='form-check-label'
             for="isFirstEducation"
             >
-                isFirstEducation </label >
+                Это первое образование </label >
         </div>
 
         <div class="input-group mb-3">
@@ -278,7 +265,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.address}
          class="form-control"
-         placeholder='Введите address'
+         placeholder='Введите адрес'
        />
         </div>
 
@@ -290,7 +277,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.birthdayDate}
          class="form-control"
-         placeholder='Введите birthdayDate'
+         placeholder='Введите дату рождения'
        />
         </div>
         <div class="input-group mb-3">
@@ -301,7 +288,7 @@ function Anket() {
          onChange={formik.handleChange}
          value={formik.values.phone}
          class="form-control"
-         placeholder='Введите phone'
+         placeholder='Введите номер телефона'
        />
         </div>
         <div class="input-group mb-3">
@@ -313,11 +300,11 @@ function Anket() {
         
          value={formik.values.passportData}
          class="form-control"
-         placeholder='Введите passportData'
+         placeholder='Введите серию и номер паспорта'
        />
         </div>
 
-     <Link  onClick={formik.submitForm} to="/coll"   ><button type="submit" class="btn btn-primary btn-block mb-4">Далее</button> </Link>
+     <Link  onClick={formik.submitForm} to="/coll"   ><button type="submit" class="btn btn-primary btn-block mb-4 col-3">Далее</button> </Link>
      </form>
      </div>
      </div>
@@ -327,31 +314,3 @@ function Anket() {
 export default Anket
 
 
-
-// {
-//   "userInfo": {
-//   "email": null,
-//   "firstName": null,
-//   "lastName": null,
-//   "patronymic": null,
-//   "isVisibleEducation": false,
-//   "сertificateSeries": null,
-//   "сertificateNumber": 0,
-//   "сertificateScore": null,
-//   "foreignLanguage": null,
-//   "needSocialBehavior": false,
-//   "needHelp": false,
-//   "moreInfo": null,
-//   "schoolName": null,
-//   "schoolEndYear": 0,
-//   "oldEducation": null,
-//   "isFirstEducation": false,
-//   "address": null,
-//   "birthdayDate": null,
-//   "phone": null,
-//   "passportData": null,
-//   "toFreeEducation": false
-//   },
-//   "colleges": [перечисление id],
-//   "specialties": [перечисление id]
-//   }

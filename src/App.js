@@ -7,6 +7,7 @@ import Coll from './pages/Coll';
 import * as React from 'react';
 import Spec from './pages/Spec';
 import Anketa from './pages/Anketa';
+import Main from './pages/Main';
 export const AnketContext = React.createContext('');
 export const HeaderContext = React.createContext('');
 export const CollContext = React.createContext('');
@@ -18,16 +19,17 @@ function App() {
   const [collValue, setCollValue] = React.useState([]);
   const [specValue, setSpecValue] = React.useState('');
   return (
-    <div className="App">
+    <div className="App ">
        <AnketContext.Provider value={{ anketValue, setAnketValue }}>
             <HeaderContext.Provider value={{ headerValue, setHeaderValue }}>
               <CollContext.Provider value={{ collValue, setCollValue }}>
               <SpecContext.Provider value={{ specValue, setSpecValue }}>
-       <Header/>
+      
              <Routes>
-              <Route path="/" element={<Anketa />} />
+              <Route path="/" element={<Main />} />
               <Route path="/coll" element={<Coll />} />
               <Route path="/spec" element={<Spec />} />
+              <Route path="/anketa" element={<Anketa />} />
             
              </Routes>
              </SpecContext.Provider>
