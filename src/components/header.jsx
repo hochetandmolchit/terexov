@@ -12,7 +12,7 @@ function Header() {
     >
       <Link onClick={()=>setHeaderValue(4)} to="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"></svg>
-        <span class="fs-4">ФормированиеДокументов.РФ</span>
+        <span class="fs-4">CollegeHelper</span>
       </Link>
 
       <ul class="nav nav-pills ">

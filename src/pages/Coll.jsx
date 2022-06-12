@@ -24,17 +24,17 @@ function Coll() {
         console.log(collValue)
        
     }
-   const zxc = false;
+  
    
     const handleChange = e => {
        
         if (e.target.checked === true) {
             setCollValue([...collValue, Number(e.target.value)]);
            
-            console.log(zxc)
+          
         } else {
           
-            console.log(zxc)
+           
           const selectedAcc = collValue.filter(a => {
             if (a === Number(e.target.value)) return false;
             return true;
@@ -53,7 +53,7 @@ function Coll() {
         <div className="row">
     {CollItem.map((obj)=>(<>
     <div className="col-4 pt-6">
-    <div class={zxc==true?"card mb-3  border-primary":"card mb-3"} >
+    <div class="card mb-3" >
     <div class="card" >
   <img class="card-img-top" source={obj.photo} alt="Card image cap"/>
   <div class="card-body">
