@@ -11,9 +11,9 @@ function Coll() {
     const {anketValue, setAnketValue} = React.useContext(AnketContext);
     let [CollItem, SetCollItem]  = React.useState([]);
     React.useEffect( ()=> {
-        fetch("https://81e5-178-176-231-161.eu.ngrok.io/College/GetAll",{
-        
-
+        fetch("https://f575-178-178-84-90.eu.ngrok.io/College/GetAll",{
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*"
         }).then((res)=>{
           return res.json();
          }).then( (json)=>{

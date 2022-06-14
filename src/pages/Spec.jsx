@@ -14,24 +14,66 @@ function Spec() {
     
     let [specsItem, SetSpecsItem]  = React.useState([]);
 
-    console.log(specsItem)
     function qwe() {
-       console.log(collValue[0])
-       console.log(collValue[1])
+       console.log(collValue)
+       
       
         console.log("Колледжи "+collValue)
-        console.log("Почта "+anketValue.email)
+        console.log("Почта "+[anketValue.email])
         console.log("Специальности "+specValue)
-
+console.log("email"+ anketValue.email,
+"firstName"+ anketValue.firstName,
+"lastName"+ anketValue.lastName,
+"patronymic"+ anketValue.patronymic,
+"isVisibleEducation"+ anketValue.isVisibleEducation,
+"сertificateSeries"+ anketValue.сertificateSeries,
+"сertificateNumber"+ anketValue.сertificateNumber,
+"сertificateScore"+ anketValue.сertificateScore,
+"foreignLanguage"+ anketValue.foreignLanguage,
+"needSocialBehavior"+ anketValue.needSocialBehavior,
+"needHelp"+ anketValue.needHelp,
+"moreInfo"+ anketValue.moreInfo,
+"schoolName"+ anketValue.schoolName,
+"schoolEndYear"+ anketValue.schoolEndYear,
+"oldEducation"+ anketValue.oldEducation,
+"isFirstEducation"+ anketValue.isFirstEducation,
+"address"+ anketValue.address,
+"birthdayDate"+ anketValue.birthdayDate,
+"phone"+ anketValue.phone,
+"passportData"+ anketValue.passportData,
+"toFreeEducation"+ anketValue.toFreeEducation)
           
-            fetch('https://81e5-178-176-231-161.eu.ngrok.io/PdfCreator/DownloadFiles', {
+            fetch('https://f575-178-178-84-90.eu.ngrok.io/PdfCreator/GetPages', {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
-                    'Content-Type': 'application/json;charset=utf-8',
-                 
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*"
                 },
                 body: JSON.stringify({
-                    "anket":[anketValue],
+                    "userInfo": {
+                        "email": anketValue.email,
+                        "firstName": anketValue.firstName,
+                        "lastName": anketValue.lastName,
+                        "patronymic": anketValue.patronymic,
+                        "isVisibleEducation": anketValue.isVisibleEducation,
+                        "сertificateSeries": anketValue.сertificateSeries,
+                        "сertificateNumber": anketValue.сertificateNumber,
+                        "сertificateScore": anketValue.сertificateScore,
+                        "foreignLanguage": anketValue.foreignLanguage,
+                        "needSocialBehavior": anketValue.needSocialBehavior,
+                        "needHelp": anketValue.needHelp,
+                        "moreInfo": anketValue.moreInfo,
+                        "schoolName": anketValue.schoolName,
+                        "schoolEndYear": anketValue.schoolEndYear,
+                        "oldEducation": anketValue.oldEducation,
+                        "isFirstEducation": anketValue.isFirstEducation,
+                        "address": anketValue.address,
+                        "birthdayDate": anketValue.birthdayDate,
+                        "phone": anketValue.phone,
+                        "passportData": anketValue.passportData,
+                        "toFreeEducation": anketValue.toFreeEducation
+                        },
                     "colleges": [collValue],
                     "specialties": [specValue]
                 }),
@@ -40,8 +82,30 @@ function Spec() {
   
   
     React.useEffect( ()=> {
-       
-        fetch("https://81e5-178-176-231-161.eu.ngrok.io/GetByColleges/GetByCollegesId?ids="+"["+collValue+"]").then((res)=>{
+        var coolegesIds = collValue;
+        let requestUrl = "/Speciality/GetByCollegesId?";
+        console.log(collValue)
+        console.log(collValue.lenght)
+        for (let index = 0; index < coolegesIds.length; index++) {
+            if(index == 0)
+            {
+            requestUrl += `collegesId=${coolegesIds[index]}`;
+            }
+            else{
+            requestUrl += `&collegesId=${coolegesIds[index]}`;
+            }
+            }
+            
+            console.log(requestUrl);
+         //   /Speciality/GetByCollegesId?collegesId=2&collegesId=1
+      
+        fetch("https://f575-178-178-84-90.eu.ngrok.io"+requestUrl, {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Accept": "application/json",
+            "ContentEncoding": "UTF-8"
+
+        }).then((res)=>{
           return res.json();
          }).then( (json)=>{
             SetSpecsItem(json)
@@ -120,7 +184,7 @@ function Spec() {
 </div>
     
     </div>
-    <div className="container fixed-bottom">
+    <div className="container">
     <Footer/>
     </div>
     </>)
